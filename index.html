@@ -1,0 +1,100 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pag</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+  <style>
+    canvas {
+      background-color: darkblue;
+      width: 100%; /* Hacer que el canvas ocupe todo el ancho del contenedor */
+      height: 450px; /* Altura del canvas */
+      display: block;
+      margin: 0 auto; /* Centrar el canvas */
+    }
+  </style>
+</head>
+<body>
+
+  <section class="hero is-fullheight">
+    <!-- Hero encabezado -->
+    <div class="hero-head">
+      <header class="navbar">
+        <div class="container">
+          <div class="navbar-brand">
+            <a class="navbar-item" href="#">
+              <h1 class="title">virtualGallery</h1>
+            </a>
+          </div>
+        </div>
+      </header>
+    </div>
+
+    <div class="hero-body">
+      <div class="container">
+        <canvas id="myCanvas"></canvas>
+	<br>
+	<div class="block">
+          <p class="title is-6 has-text-centered">Deep blue</p>
+          <p class="subtitle is-6 has-text-centered">A fragment of an picture of the sea by 
+	  <a href="https:\\edwinsaul.com">Edwin Saul</a> <br>
+	  </p>
+
+	</div>
+      </div>
+    </div>
+
+    <div class="hero-foot">
+      <nav class="tabs is-fullwidth">
+        <div class="container">
+          <ul>
+            <li><a href="#">&lt; previus</a></li>
+            <li><a href="#">github</a></li>
+            <li><a href="#">next &gt;</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </section>
+
+  <script>
+    // JavaScript para la animación del canvas
+    var canvas = document.getElementById('myCanvas');
+    var ctx = canvas.getContext('2d');
+
+    // Posición inicial del objeto
+    var x = canvas.width / 2;
+    var y = canvas.height - 30;
+
+    // Velocidad del objeto
+    var dx = 2;
+    var dy = -2;
+
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.beginPath();
+      ctx.arc(x, y, 10, 0, Math.PI * 2);
+      ctx.fillStyle = 'gray';
+      ctx.fill();
+      ctx.closePath();
+
+      // Cambiar la dirección si alcanza los bordes del canvas
+      if (x + dx > canvas.width || x + dx < 0) {
+        dx = -dx;
+      }
+      if (y + dy > canvas.height || y + dy < 0) {
+        dy = -dy;
+      }
+
+      x += dx;
+      y += dy;
+    }
+
+    setInterval(draw, 10); // Llamar a la función draw cada 10 milisegundos
+  </script>
+
+
+</body>
+</html>
